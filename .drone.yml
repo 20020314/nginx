@@ -1,0 +1,36 @@
+kind: pipeline
+type: docker
+name: build and push
+
+steps:
+- name: build
+  image: docker:latest
+  commands:
+  - docker build -t nginx .
+  when:
+    event:
+    - push
+    branch:
+    - main
+
+- name: login
+  image: plugins/docker:latest
+  settings:
+    username: chaikair
+    password: 389609066
+  when:
+    event:
+    - push
+    branch:
+    - main
+
+- name: push
+  image: plugins/docker:latest
+  settings:
+    repository: chaikair/nginx
+    tags: latest
+  when:
+    event:
+    - push
+    branch:
+    - main
