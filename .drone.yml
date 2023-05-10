@@ -36,7 +36,7 @@ steps:
   image: plugins/docker:latest
   settings:
     repository: chaikair/mynginx
-    tags: [latest]
+    tags: [v1]
   when:
     event:
     - push
