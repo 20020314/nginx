@@ -14,7 +14,7 @@ steps:
   - name: docker_socket
     path: /var/run/docker.sock
   commands:
-  - docker build -t web .
+  - docker build -t mynginx .
   when:
     event:
     - push
@@ -35,8 +35,8 @@ steps:
 - name: push
   image: plugins/docker:latest
   settings:
-    repository: chaikair/web
-    tags: latest
+    repository: chaikair/mynginx
+    tags: [latest]
   when:
     event:
     - push
